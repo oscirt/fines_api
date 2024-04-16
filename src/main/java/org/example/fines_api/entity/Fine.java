@@ -1,10 +1,16 @@
 package org.example.fines_api.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "Fine")
 public class Fine {
@@ -12,34 +18,34 @@ public class Fine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "fine_id")
-    public int id;
+    private int id;
 
     @Column(name = "fine_number")
-    public int fineNumber;
+    private int fineNumber;
 
     @Column(name = "fine_start_date")
-    public Date fineStartDate;
+    private Date fineStartDate;
 
     @Column(name = "fine_end_date")
-    public Date fineEndDate;
+    private Date fineEndDate;
 
 //    @ElementCollection // todo: реализовать хранилище данных
-//    public List<String> urls;
+//    private List<String> urls;
 
     @Column(name = "fine_requisites")
-    public String fineRequisites;
+    private String fineRequisites;
 
     @Column(name = "fine_status")
     @Enumerated
-    public FineStatus fineStatus;
+    private FineStatus fineStatus;
 
     @Column(name = "fine_amount")
-    public BigDecimal fineAmount;
+    private BigDecimal fineAmount;
 
     @Column(name = "fine_vehicle_number")
-    public String fineVehicleNumber;
+    private String fineVehicleNumber;
 
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id", nullable = false)
-    public User user;
+    private User user;
 }

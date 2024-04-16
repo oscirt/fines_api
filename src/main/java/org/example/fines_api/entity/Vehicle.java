@@ -1,7 +1,13 @@
 package org.example.fines_api.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "Vehicle")
 public class Vehicle {
@@ -9,18 +15,18 @@ public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "vehicle_id")
-    public int id;
+    private int id;
 
     @Column(name = "vehicle_vin_number", nullable = false)
-    public String vinNumber;
+    private String vinNumber;
 
     @Column(name = "vehicle_brand", nullable = false)
-    public String vehicleBrand;
+    private String vehicleBrand;
 
     @Column(name = "vehicle_number", nullable = false)
-    public String vehicleNumber;
+    private String vehicleNumber;
 
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id", nullable = false)
-    public User user;
+    private User user;
 }

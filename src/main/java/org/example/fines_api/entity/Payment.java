@@ -1,10 +1,16 @@
 package org.example.fines_api.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "Payment")
 public class Payment {
@@ -12,22 +18,22 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "payment_id")
-    public int id;
+    private int id;
 
     @Column(name = "payment_number")
-    public int paymentNumber;
+    private int paymentNumber;
 
     @Column(name = "payment_status", nullable = false)
     @Enumerated
-    public PaymentStatus paymentStatus;
+    private PaymentStatus paymentStatus;
 
     @Column(name = "payment_date", nullable = false)
-    public Date paymentDate;
+    private Date paymentDate;
 
     @Column(name = "payment_amount", nullable = false)
-    public BigDecimal paymentAmount;
+    private BigDecimal paymentAmount;
 
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id", nullable = false)
-    public User owner;
+    private User user;
 }
