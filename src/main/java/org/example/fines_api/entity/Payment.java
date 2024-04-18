@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.fines_api.entity.enums.PaymentStatus;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,13 +13,17 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "Payment")
+@Table(name = "payment")
 public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "payment_id")
     private int id;
+
+    @ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Column(name = "payment_number")
     private int paymentNumber;
@@ -32,8 +37,4 @@ public class Payment {
 
     @Column(name = "payment_amount", nullable = false)
     private BigDecimal paymentAmount;
-
-    @ManyToOne(targetEntity = User.class)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
 }

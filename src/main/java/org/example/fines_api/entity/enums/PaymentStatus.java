@@ -1,4 +1,4 @@
-package org.example.fines_api.entity;
+package org.example.fines_api.entity.enums;
 
 public enum PaymentStatus {
     DONE, // оплата прошла успешно

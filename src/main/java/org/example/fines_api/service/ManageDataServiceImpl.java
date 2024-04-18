@@ -43,8 +43,13 @@ public class ManageDataServiceImpl implements ManageDataService {
     }
 
     @Override
-    public User getUserById(int id) {
-        return userRepository.getReferenceById(id);
+    public User getUserById(Integer userId) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isPresent()) {
+            return optionalUser.get();
+        }
+        logger.error(String.format("User with userId %s not found", userId));
+        return null;
     }
 
     @Override
@@ -60,7 +65,7 @@ public class ManageDataServiceImpl implements ManageDataService {
             userFromDb.setUsername(user.getUsername());
             return userRepository.save(userFromDb);
         }
-        logger.info("User not found in database");
+        logger.error("User not found in database");
         return null;
     }
 
@@ -70,18 +75,23 @@ public class ManageDataServiceImpl implements ManageDataService {
     }
 
     @Override
-    public void deleteUser(User user) {
-        userRepository.delete(user);
-    }
-
-    @Override
-    public void deleteUserById(int id) {
+    public void deleteUserById(Integer id) {
         userRepository.deleteById(id);
     }
 
     @Override
     public List<Fine> getAllFines() {
         return fineRepository.findAll();
+    }
+
+    @Override
+    public Fine getFineById(Integer fineId) {
+        Optional<Fine> optionalFine = fineRepository.findById(fineId);
+        if (optionalFine.isPresent()) {
+            return optionalFine.get();
+        }
+        logger.error(String.format("Fine with id %s not found", fineId));
+        return null;
     }
 
     @Override
@@ -99,7 +109,7 @@ public class ManageDataServiceImpl implements ManageDataService {
             fineFromDb.setUser(fine.getUser());
             return fineRepository.save(fineFromDb);
         }
-        logger.info("Fine not found in database");
+        logger.error("Fine not found in database");
         return null;
     }
 
@@ -109,18 +119,23 @@ public class ManageDataServiceImpl implements ManageDataService {
     }
 
     @Override
-    public void deleteFine(Fine fine) {
-        fineRepository.delete(fine);
-    }
-
-    @Override
-    public void deleteFineById(int fineId) {
+    public void deleteFineById(Integer fineId) {
         fineRepository.deleteById(fineId);
     }
 
     @Override
     public List<Payment> getAllPayments() {
         return paymentRepository.findAll();
+    }
+
+    @Override
+    public Payment getPaymentById(Integer paymentId) {
+        Optional<Payment> optionalPayment = paymentRepository.findById(paymentId);
+        if (optionalPayment.isPresent()) {
+            return optionalPayment.get();
+        }
+        logger.error(String.format("Payment with id %s not found", paymentId));
+        return null;
     }
 
     @Override
@@ -135,7 +150,7 @@ public class ManageDataServiceImpl implements ManageDataService {
             paymentFromDb.setUser(payment.getUser());
             return paymentRepository.save(paymentFromDb);
         }
-        logger.info("Payment not found in database");
+        logger.error("Payment not found in database");
         return null;
     }
 
@@ -145,18 +160,23 @@ public class ManageDataServiceImpl implements ManageDataService {
     }
 
     @Override
-    public void deletePayment(Payment payment) {
-        paymentRepository.delete(payment);
-    }
-
-    @Override
-    public void deletePaymentById(int paymentId) {
+    public void deletePaymentById(Integer paymentId) {
         paymentRepository.deleteById(paymentId);
     }
 
     @Override
     public List<Vehicle> getAllVehicles() {
         return vehicleRepository.findAll();
+    }
+
+    @Override
+    public Vehicle getVehicleById(Integer vehicleId) {
+        Optional<Vehicle> optionalVehicle = vehicleRepository.findById(vehicleId);
+        if (optionalVehicle.isPresent()) {
+            return optionalVehicle.get();
+        }
+        logger.error(String.format("Vehicle with id %s not found", vehicleId));
+        return null;
     }
 
     @Override
@@ -170,7 +190,7 @@ public class ManageDataServiceImpl implements ManageDataService {
             vehicleFromDb.setVinNumber(vehicle.getVinNumber());
             return vehicleRepository.save(vehicle);
         }
-        logger.info("Vehicle not found in database");
+        logger.error("Vehicle not found in database");
         return null;
     }
 
@@ -180,12 +200,7 @@ public class ManageDataServiceImpl implements ManageDataService {
     }
 
     @Override
-    public void deleteVehicle(Vehicle vehicle) {
-        vehicleRepository.delete(vehicle);
-    }
-
-    @Override
-    public void deleteVehicleById(int vehicleId) {
+    public void deleteVehicleById(Integer vehicleId) {
         vehicleRepository.deleteById(vehicleId);
     }
 }

@@ -11,43 +11,41 @@ public interface ManageDataService {
 
     List<User> getAllUsers();
 
-    User getUserById(int id);
+    User getUserById(Integer userId);
 
     User updateUser(User user);
 
     User addUser(User user);
 
-    void deleteUser(User user);
-
-    void deleteUserById(int userId);
+    void deleteUserById(Integer userId);
 
     List<Fine> getAllFines();
+
+    Fine getFineById(Integer fineId);
 
     Fine updateFine(Fine fine);
 
     Fine addFine(Fine fine);
 
-    void deleteFine(Fine fine);
-
-    void deleteFineById(int fineId);
+    void deleteFineById(Integer fineId);
 
     List<Payment> getAllPayments();
+
+    Payment getPaymentById(Integer paymentId);
 
     Payment updatePayment(Payment payment);
 
     Payment addPayment(Payment payment);
 
-    void deletePayment(Payment payment);
-
-    void deletePaymentById(int paymentId);
+    void deletePaymentById(Integer paymentId);
 
     List<Vehicle> getAllVehicles();
+
+    Vehicle getVehicleById(Integer vehicleId);
 
     Vehicle updateVehicle(Vehicle vehicle);
 
     Vehicle addVehicle(Vehicle vehicle);
 
-    void deleteVehicle(Vehicle vehicle);
-
-    void deleteVehicleById(int vehicleId);
+    void deleteVehicleById(Integer vehicleId);
 }

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "Vehicle")
+@Table(name = "vehicle")
 public class Vehicle {
 
     @Id
@@ -17,16 +17,16 @@ public class Vehicle {
     @Column(name = "vehicle_id")
     private int id;
 
-    @Column(name = "vehicle_vin_number", nullable = false)
-    private String vinNumber;
-
-    @Column(name = "vehicle_brand", nullable = false)
-    private String vehicleBrand;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Column(name = "vehicle_number", nullable = false)
     private String vehicleNumber;
 
-    @ManyToOne(targetEntity = User.class)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "vehicle_brand", nullable = false)
+    private String vehicleBrand;
+
+    @Column(name = "vehicle_vin_number", nullable = false)
+    private String vinNumber;
 }
