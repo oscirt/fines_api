@@ -12,5 +12,5 @@ public enum FineStatus {
     /**
      * Штраф не оплачен
      */
-    NOT_PAID // либо нет
+    NOT_PAID
 }

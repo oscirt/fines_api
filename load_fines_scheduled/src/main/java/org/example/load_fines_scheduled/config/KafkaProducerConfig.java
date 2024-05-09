@@ -13,14 +13,9 @@ public class KafkaProducerConfig {
 
     @Bean
     public NewTopic topic() {
-        return TopicBuilder.name("test")
+        return TopicBuilder.name("fines")
                 .partitions(10)
                 .replicas(1)
                 .build();
     }
-
-//    @Bean
-//    public ApplicationRunner runner(KafkaTemplate<String, String> template) {
-//        return args -> template.send("topic1", "test");
-//    }
 }
