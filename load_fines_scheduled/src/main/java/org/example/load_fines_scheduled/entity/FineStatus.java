@@ -1,7 +1,7 @@
-package org.example.fines_api.entity.enums;
+package org.example.load_fines_scheduled.entity;
 
 /**
- * Статус штрафа
+ * Два статуса штрафа - оплачен или нет
  */
 public enum FineStatus {
     /**
@@ -12,5 +12,5 @@ public enum FineStatus {
     /**
      * Штраф не оплачен
      */
-    NOT_PAID
+    NOT_PAID // либо нет
 }

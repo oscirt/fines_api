@@ -15,18 +15,18 @@ public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "vehicle_id")
-    private int id;
+    private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "vehicle_number", nullable = false)
+    @Column(name = "vehicle_number", unique = true)
     private String vehicleNumber;
 
-    @Column(name = "vehicle_brand", nullable = false)
+    @Column(name = "vehicle_brand")
     private String vehicleBrand;
 
-    @Column(name = "vehicle_vin_number", nullable = false)
+    @Column(name = "vehicle_vin_number", unique = true)
     private String vinNumber;
 }

@@ -1,13 +1,12 @@
-package org.example.fines_api.entity;
+package org.example.load_fines_scheduled.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.fines_api.entity.enums.FineStatus;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * Модель штрафа
@@ -22,23 +21,22 @@ public class Fine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "fine_id")
-    private Integer id;
+    private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(name = "user_id")
+    private int userId;
 
-    @Column(name = "fine_number", unique = true)
-    private Integer fineNumber;
+    @Column(name = "fine_number")
+    private int fineNumber;
 
     @Column(name = "fine_vehicle_number")
     private String fineVehicleNumber;
 
     @Column(name = "fine_start_date")
-    private LocalDateTime fineStartDate;
+    private Date fineStartDate;
 
     @Column(name = "fine_end_date")
-    private LocalDateTime fineEndDate;
+    private Date fineEndDate;
 
     @Column(name = "fine_status")
     @Enumerated

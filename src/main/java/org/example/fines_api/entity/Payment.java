@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import org.example.fines_api.entity.enums.PaymentStatus;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,22 +19,22 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "payment_id")
-    private int id;
+    private Integer id;
 
-    @ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "payment_number")
-    private int paymentNumber;
+    @Column(name = "payment_number", unique = true)
+    private Integer paymentNumber;
 
-    @Column(name = "payment_status", nullable = false)
+    @Column(name = "payment_status")
     @Enumerated
     private PaymentStatus paymentStatus;
 
-    @Column(name = "payment_date", nullable = false)
-    private Date paymentDate;
+    @Column(name = "payment_date")
+    private LocalDateTime paymentDate;
 
-    @Column(name = "payment_amount", nullable = false)
+    @Column(name = "payment_amount")
     private BigDecimal paymentAmount;
 }
