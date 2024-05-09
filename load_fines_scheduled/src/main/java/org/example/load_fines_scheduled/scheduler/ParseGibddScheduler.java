@@ -20,6 +20,7 @@ import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -49,7 +50,7 @@ public class ParseGibddScheduler {
     /**
      * Метод поиска штрафов, запускается каждые 10 секунд
      */
-    @Scheduled(fixedDelay = 10_000L)
+    @Scheduled(fixedDelay = 5, timeUnit = TimeUnit.MINUTES)
     public void checkForNewFines() {
         List<Fine> fines = finesRepository.checkForNewFines(latestIndex);
         if (!fines.isEmpty()) {
@@ -64,7 +65,7 @@ public class ParseGibddScheduler {
         }
     }
 
-    @Scheduled(fixedDelay = 5_000L)
+    @Scheduled(fixedDelay = 1, timeUnit = TimeUnit.MINUTES)
     public void generateNewFine() {
         Random random = new Random();
         Integer userId = random.nextInt(12, 16);
